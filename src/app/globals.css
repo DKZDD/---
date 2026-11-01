@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #ffd21a;
+  --color-brand-300: #ffe066;
+  --color-brand-600: #eab308;
+  --color-ink: #0a0a0d;
+  --color-panel: #131318;
+  --color-panel-2: #1b1b22;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-anton), "Arial Narrow", ui-sans-serif, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  background-color: #0a0a0d;
+  color: #f4f4f5;
+}
+
+::selection {
+  background: #ffd21a;
+  color: #0a0a0d;
+}
+
+/* ---------- utilidades ---------- */
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.thin-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: #2e2e38;
+  border-radius: 999px;
+}
+.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #ffd21a;
+}
+
+.text-cinema {
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.75);
+}
+
+.focus-duck:focus-visible {
+  outline: 2px solid #ffd21a;
+  outline-offset: 2px;
+}
+
+/* ---------- animações ---------- */
+
+@keyframes kenburns {
+  from {
+    transform: scale(1) translateY(0);
+  }
+  to {
+    transform: scale(1.14) translateY(-1.5%);
+  }
+}
+.animate-kenburns {
+  animation: kenburns 16s ease-out forwards;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-rise {
+  animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.animate-rise-late {
+  animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(36px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-modal {
+  animation: modal-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out both;
+}
+
+@keyframes flash-icon {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  30% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.4);
+  }
+}
+.animate-flash-icon {
+  animation: flash-icon 0.7s ease-out both;
+}
+
+@keyframes duck-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 210, 26, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(255, 210, 26, 0);
+  }
+}
+.animate-duck-pulse {
+  animation: duck-pulse 2.2s ease-in-out infinite;
+}
+
+/* ---------- sliders (player / admin) ---------- */
+
+input[type="range"].duck-range {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+input[type="range"].duck-range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--range-track, rgba(255, 255, 255, 0.25));
+}
+input[type="range"].duck-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -5px;
+  height: 14px;
+  width: 14px;
+  border-radius: 999px;
+  background: #ffd21a;
+  box-shadow: 0 0 10px rgba(255, 210, 26, 0.55);
+  opacity: var(--range-thumb-opacity, 0);
+  transition: opacity 0.15s ease;
+}
+input[type="range"].duck-range:hover::-webkit-slider-thumb,
+input[type="range"].duck-range:focus-visible::-webkit-slider-thumb {
+  --range-thumb-opacity: 1;
+}
+input[type="range"].duck-range::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--range-track, rgba(255, 255, 255, 0.25));
+}
+input[type="range"].duck-range::-moz-range-thumb {
+  height: 14px;
+  width: 14px;
+  border: none;
+  border-radius: 999px;
+  background: #ffd21a;
+  opacity: var(--range-thumb-opacity, 0);
+}
+input[type="range"].duck-range:hover::-moz-range-thumb {
+  --range-thumb-opacity: 1;
+}
+
+/* volume sempre com bolinha visível */
+input[type="range"].duck-volume::-webkit-slider-thumb {
+  --range-thumb-opacity: 1;
+  height: 12px;
+  width: 12px;
+  margin-top: -4px;
+}
+input[type="range"].duck-volume::-moz-range-thumb {
+  --range-thumb-opacity: 1;
+  height: 12px;
+  width: 12px;
+}
